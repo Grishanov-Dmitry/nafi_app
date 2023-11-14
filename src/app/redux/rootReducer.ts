@@ -37,7 +37,7 @@ export const productPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-   cards: mainSliceReducer,
+   common: mainSliceReducer,
 });
 
 export default rootReducer;

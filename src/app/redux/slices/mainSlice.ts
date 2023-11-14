@@ -1,67 +1,30 @@
 import { createSlice, Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface Card {
-  activity: string;
-  type: string;
-  participants: number;
-  price: number;
-  link: string;
-  key: string;
-  accessibility: number;
+export interface IState {
+  isLoged: boolean;
+  userName: string;
 }
 
-interface CardState {
-  cardDetails: Card;
-}
+const initialState: IState = {
+  isLoged: false,
 
-const initialState: CardState = {
-    cardDetails: {
-      activity: "",
-      type: "",
-      participants: 0,
-      price: 0,
-      link: "",
-      key: "",
-      accessibility: 0,
-    },
+  userName: 'Тимур Аймалетдинов',
 };
 
-
-// TODO Rename Card 
-const cardSlice = createSlice({
-    name: "cards", // Name of the slice
-    initialState, // Initial state
+const commonSlice = createSlice({
+    name: "common",
+    initialState,
     reducers: {
-      // Reducer for updating cardDetails after a successful resource fetch
-      getResourcesSuccess(state, action) {
-        const resources = action.payload;
-        state.cardDetails = resources;
+      setUserName(state, { payload }) {
+        state.userName = payload;
+      },
+      changeLogIn(state, { payload }) {
+        state.isLoged = payload;
       },
     },
   });
 
-  export const { getResourcesSuccess } = cardSlice.actions;
+export const { setUserName, changeLogIn } = commonSlice.actions;
 
-// Export the reducer
-export default cardSlice.reducer;
-
-// Define an asynchronous action creator to fetch card resources from an API
-export function getResources() {
-  return async (dispatch: Dispatch) => {
-    try {
-      // Make an HTTP GET request to the API
-      const response = await axios.get(
-        "https://www.boredapi.com/api/activity",
-      );
-
-      // Extract card resources from the API response
-      const resources: Card = response.data;
-
-      // Dispatch the getResourcesSuccess action to update the Redux state
-      dispatch(getResourcesSuccess(resources));
-    } catch (error) {
-      console.error("Error fetching card resources:", error);
-    }
-  };
-}
+export default commonSlice.reducer;
