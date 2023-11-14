@@ -24,4 +24,11 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    height: 100vh;
+
+    /* Constants */
+    --main-gold: #f0af13;
+    --main-silver: #99989b;
+    --white: #ffffff;
+    --black: #000000;
 }
