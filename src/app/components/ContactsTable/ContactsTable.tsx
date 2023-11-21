@@ -38,7 +38,7 @@ const rows = [
 
 export const ContactsTable = () => {
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div style={{ height: 650, width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
