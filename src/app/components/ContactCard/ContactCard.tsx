@@ -1,6 +1,9 @@
 import { ChangeEvent, useState } from "react";
+
 import TextField from "@mui/material/TextField";
+import CloseIcon from '@mui/icons-material/Close';
 import {
+  Box,
   Button,
   Checkbox,
   Dialog,
@@ -12,22 +15,19 @@ import {
   Typography,
 } from "@mui/material";
 
-interface FormData {
-  name: string;
-  organization: string;
-  position: "";
-  phone: string;
-  email: string;
-  comment: string;
-}
+import styles from './styles.module.css'
+import { IContact } from "@/app/types";
 
 export const ContactCard = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<IContact>({
     name: "",
     organization: "",
     position: "",
+    expertise: "",
     phone: "",
+    phoneSecond: "",
     email: "",
+    emailSecond: "",
     comment: "",
   });
 
@@ -53,58 +53,90 @@ export const ContactCard = () => {
     <Dialog maxWidth="md" fullWidth open={true} className="p-1">
       <DialogContent className="p-7 flex flex-col">
         <Typography variant="h4">Карточка эксперта</Typography>
-        {/* <IconButton
-        edge="end"
-        color="inherit"
-        // onClick={handleClose}
-        aria-label="close"
-        style={{ position: "absolute", top: 0, right: 0 }}
-      /> */}
-        <TextField
-          label="ФИО"
-          variant="outlined"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Организация"
-          variant="outlined"
-          name="organization"
-          value={formData.organization}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Должность"
-          variant="outlined"
-          name="position"
-          value={formData.position}
-          onChange={handleChange}
-          // fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Телефон"
-          variant="outlined"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          // fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Email"
-          variant="outlined"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          // fullWidth
-          margin="normal"
-        />
+        <IconButton
+          edge="end"
+          color="inherit"
+          // onClick={handleClose}
+          aria-label="close"
+          style={{ position: "absolute", top: 20, right: 50 }}
+        ><CloseIcon/></IconButton>
+        <Box display='flex' flexWrap='wrap' marginBottom={6} >
+          <TextField
+            className={styles.textField}
+            label="ФИО"
+            variant="outlined"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Организация"
+            variant="outlined"
+            name="organization"
+            value={formData.organization}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Должность"
+            variant="outlined"
+            name="position"
+            value={formData.position}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Экспертиза"
+            variant="outlined"
+            name="expertise"
+            value={formData.expertise}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Телефон"
+            variant="outlined"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Телефон 2"
+            variant="outlined"
+            name="phoneSecond"
+            value={formData.phoneSecond}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Email"
+            variant="outlined"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            className={styles.textField}
+            label="Email 2"
+            variant="outlined"
+            name="emailSecond"
+            value={formData.emailSecond}
+            onChange={handleChange}
+            margin="normal"
+          />
+
+        </Box>
 
         <FormControlLabel
           control={

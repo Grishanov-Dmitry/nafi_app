@@ -1,15 +1,40 @@
-import { createSlice, Dispatch } from "@reduxjs/toolkit";
-import axios from "axios";
+import { IContact } from "@/app/types";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface IState {
-  isLoged: boolean;
+  isLogged: boolean;
   userName: string;
+  contacts: IContact[]
 }
 
 const initialState: IState = {
-  isLoged: false,
+  isLogged: false,
 
   userName: 'Тимур Аймалетдинов',
+  contacts: [
+    {
+      name: "Dzmitry Some",
+      organization: "BFS solution",
+      position: "Engineer",
+      expertise: "Cars",
+      phone: "+37529 1111111",
+      phoneSecond: "",
+      email: "someEmail@.com",
+      emailSecond: "",
+      comment: "Can work with him",
+    },
+    {
+      name: "Alex Some",
+      organization: "BFS Global",
+      position: "Engineer",
+      expertise: "Cars",
+      phone: "+37529 1111111",
+      phoneSecond: "",
+      email: "someEmail@.com",
+      emailSecond: "",
+      comment: "Crazy person",
+    }
+  ]
 };
 
 const commonSlice = createSlice({
@@ -20,7 +45,7 @@ const commonSlice = createSlice({
         state.userName = payload;
       },
       changeLogIn(state, { payload }) {
-        state.isLoged = payload;
+        state.isLogged = payload;
       },
     },
   });
