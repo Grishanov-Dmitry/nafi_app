@@ -19,7 +19,7 @@ import styles from './styles.module.css'
 import { type IContact } from '@/app/types'
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
 import { getActiveContact, getActiveContactId } from '@/app/redux/slices/selectors'
-import { saveNewContact, setActiveContactId } from '@/app/redux/slices/mainSlice'
+import { saveNewContacts, setActiveContactId } from '@/app/redux/slices/mainSlice'
 
 interface IField {
   label: string
@@ -86,13 +86,15 @@ export const ContactCard = () => {
     email: '',
     emailSecond: '',
     source: '',
-    comment: ''
+    comment: '',
+    shareDisabled: false
   })
 
-  const [hasReadRules, setHasReadRules] = useState(false)
-
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setHasReadRules(event.target.checked)
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      shareDisabled: event.target.checked
+    }))
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +109,7 @@ export const ContactCard = () => {
     const isRequiredFilled = requiredFields.every((field) => formData[field].length > 0)
 
     if (isRequiredFilled) {
-      dispatch(saveNewContact(formData))
+      dispatch(saveNewContacts([formData]))
       dispatch(setActiveContactId(null))
     }
   }
@@ -144,7 +146,6 @@ export const ContactCard = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={hasReadRules}
               onChange={handleCheckboxChange}
               name="hasReadRules"
               color="primary"

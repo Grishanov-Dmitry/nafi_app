@@ -10,7 +10,8 @@
         "email": "vasily@gmail.com",
         "emailSecond": "",
         "source": "contacts",        
-        "comment": "Хороший специалист"
+        "comment": "Хороший специалист",
+        "shareDisabled": true
     },
     {
         "id": "2",
@@ -23,7 +24,8 @@
         "email": "holha@gmail.com",
         "emailSecond": "",
         "source": "contacts", 
-        "comment": "Отличный сотрудник"
+        "comment": "Отличный сотрудник",
+        "shareDisabled": false
     },
     {
         "id": "3",
@@ -36,7 +38,8 @@
         "email": "someEmail@.com",
         "emailSecond": "",
         "source": "contacts", 
-        "comment": "Can work with him"
+        "comment": "Can work with him",
+        "shareDisabled": true
       },
       {
         "id": "4",
@@ -49,6 +52,7 @@
         "email": "someEmail@.com",
         "emailSecond": "",
         "source": "contacts", 
-        "comment": "Crazy person"
+        "comment": "Crazy person",
+        "shareDisabled": false
       }
 ]

@@ -8,6 +8,7 @@ export interface IContact {
   phoneSecond: string
   email: string
   emailSecond: string
+  shareDisabled: boolean
   source: string // keyof typeof sources
   comment: string
 }

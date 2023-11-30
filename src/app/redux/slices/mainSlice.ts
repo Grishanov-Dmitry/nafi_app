@@ -30,12 +30,12 @@ const commonSlice = createSlice({
     setActiveContactId (state, { payload }) {
       state.activeContactId = payload
     },
-    saveNewContact (state, { payload }) {
-      state.contacts = [...state.contacts, payload]
+    saveNewContacts (state, { payload }) {
+      state.contacts = [...state.contacts, ...payload]
     }
   }
 })
 
-export const { setUserName, changeLogIn, setActiveContactId, saveNewContact } = commonSlice.actions
+export const { setUserName, changeLogIn, setActiveContactId, saveNewContacts } = commonSlice.actions
 
 export default commonSlice.reducer
