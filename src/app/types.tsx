@@ -1,11 +1,13 @@
 export interface IContact {
-    name: string;
-    organization: string;
-    position: string;
-    expertise: string;
-    phone: string;
-    phoneSecond: string;
-    email: string;
-    emailSecond: string;
-    comment: string; 
+  id: string
+  name: string
+  organization: string
+  position: string
+  expertise: string
+  phone: string
+  phoneSecond: string
+  email: string
+  emailSecond: string
+  source: string // keyof typeof sources
+  comment: string
 }

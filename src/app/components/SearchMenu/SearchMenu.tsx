@@ -1,1 +1,5 @@
-export const SearchMenu = () => <div className="searchMenu">SearchMenu</div>;
+export const SearchMenu = () => {
+  return <div className="searchMenu">
+
+  </div>
+}

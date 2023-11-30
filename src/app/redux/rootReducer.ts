@@ -1,43 +1,42 @@
-
-import { combineReducers } from 'redux';
-import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
+import { combineReducers } from 'redux'
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
 
 // slices
-import mainSliceReducer from './slices/mainSlice';
+import mainSliceReducer from './slices/mainSlice'
 
 // ----------------------------------------------------------------------
 
 export const createNoopStorage = () => ({
-  getItem(_key: string) {
-    return Promise.resolve(null);
+  async getItem (_key: string) {
+    return await Promise.resolve(null)
   },
-  setItem(_key: string, value: any) {
-    return Promise.resolve(value);
+  async setItem (_key: string, value: any) {
+    return await Promise.resolve(value)
   },
-  removeItem(_key: string) {
-    return Promise.resolve();
-  },
-});
+  async removeItem (_key: string) {
+    await Promise.resolve()
+  }
+})
 
 export const storage =
-  typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage();
+  typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage()
 
 export const rootPersistConfig = {
   key: 'root',
   storage,
   keyPrefix: 'redux-',
-  whitelist: [],
-};
+  whitelist: []
+}
 
 export const productPersistConfig = {
   key: 'product',
   storage,
   keyPrefix: 'redux-',
-  whitelist: ['sortBy', 'checkout'],
-};
+  whitelist: ['sortBy', 'checkout']
+}
 
 const rootReducer = combineReducers({
-   common: mainSliceReducer,
-});
+  common: mainSliceReducer
+})
 
-export default rootReducer;
+export default rootReducer

@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { type ChangeEvent, useState } from 'react'
 
-import TextField from "@mui/material/TextField";
-import CloseIcon from '@mui/icons-material/Close';
+import TextField from '@mui/material/TextField'
+import CloseIcon from '@mui/icons-material/Close'
 import {
   Box,
   Button,
@@ -12,42 +12,105 @@ import {
   FormControlLabel,
   IconButton,
   TextareaAutosize,
-  Typography,
-} from "@mui/material";
+  Typography
+} from '@mui/material'
 
 import styles from './styles.module.css'
-import { IContact } from "@/app/types";
+import { type IContact } from '@/app/types'
+import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
+import { getActiveContact, getActiveContactId } from '@/app/redux/slices/selectors'
+import { saveNewContact, setActiveContactId } from '@/app/redux/slices/mainSlice'
+
+interface IField {
+  label: string
+  name: keyof IContact
+  type?: string
+}
+
+const fields: IField[] = [
+  {
+    label: 'ФИО',
+    name: 'name'
+  },
+  {
+    label: 'Организация',
+    name: 'organization'
+  },
+  {
+    label: 'Должность',
+    name: 'position'
+  },
+  {
+    label: 'Экспертиза',
+    name: 'expertise'
+  },
+  {
+    label: 'Телефон',
+    name: 'phone'
+  },
+  {
+    label: 'Телефон 2',
+    name: 'phoneSecond'
+  },
+  {
+    label: 'Email',
+    name: 'email',
+    type: 'email'
+  },
+  {
+    label: 'Email 2',
+    name: 'emailSecond',
+    type: 'email'
+  }
+]
+
+const requiredFields = ['name', 'email', 'phone']
 
 export const ContactCard = () => {
-  const [formData, setFormData] = useState<IContact>({
-    name: "",
-    organization: "",
-    position: "",
-    expertise: "",
-    phone: "",
-    phoneSecond: "",
-    email: "",
-    emailSecond: "",
-    comment: "",
-  });
+  const activeContact = useAppSelector(getActiveContact)
+  const activeContactId = useAppSelector(getActiveContactId)
+  const dispatch = useAppDispatch()
 
-  const [hasReadRules, setHasReadRules] = useState(false);
+  if (activeContactId === null) {
+    return null
+  }
+
+  const [formData, setFormData] = useState<IContact>(activeContact ?? {
+    id: activeContactId,
+    name: '',
+    organization: '',
+    position: '',
+    expertise: '',
+    phone: '',
+    phoneSecond: '',
+    email: '',
+    emailSecond: '',
+    source: '',
+    comment: ''
+  })
+
+  const [hasReadRules, setHasReadRules] = useState(false)
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setHasReadRules(event.target.checked);
-  };
+    setHasReadRules(event.target.checked)
+  }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
-    }));
-  };
+      [name]: value
+    }))
+  }
 
   const onSave = () => {
-    console.log({ formData, hasReadRules });
-  };
+    const isRequiredFilled = requiredFields.every((field) => formData[field].length > 0)
+
+    if (isRequiredFilled) {
+      dispatch(saveNewContact(formData))
+      dispatch(setActiveContactId(null))
+    }
+  }
 
   return (
     <Dialog maxWidth="md" fullWidth open={true} className="p-1">
@@ -56,86 +119,26 @@ export const ContactCard = () => {
         <IconButton
           edge="end"
           color="inherit"
-          // onClick={handleClose}
+          onClick={() => {
+            dispatch(setActiveContactId(null))
+          }}
           aria-label="close"
-          style={{ position: "absolute", top: 20, right: 50 }}
+          style={{ position: 'absolute', top: 20, right: 50 }}
         ><CloseIcon/></IconButton>
         <Box display='flex' flexWrap='wrap' marginBottom={6} >
-          <TextField
-            className={styles.textField}
-            label="ФИО"
-            variant="outlined"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Организация"
-            variant="outlined"
-            name="organization"
-            value={formData.organization}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Должность"
-            variant="outlined"
-            name="position"
-            value={formData.position}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Экспертиза"
-            variant="outlined"
-            name="expertise"
-            value={formData.expertise}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Телефон"
-            variant="outlined"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Телефон 2"
-            variant="outlined"
-            name="phoneSecond"
-            value={formData.phoneSecond}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Email"
-            variant="outlined"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <TextField
-            className={styles.textField}
-            label="Email 2"
-            variant="outlined"
-            name="emailSecond"
-            value={formData.emailSecond}
-            onChange={handleChange}
-            margin="normal"
-          />
-
+          {fields.map(({ label, name, type = 'text' }) => (
+            <TextField
+              key={name}
+              className={styles.textField}
+              label={label}
+              variant="outlined"
+              name={name}
+              value={formData[name]}
+              onChange={handleChange}
+              margin="normal"
+              type={type}
+            />
+          ))}
         </Box>
 
         <FormControlLabel
@@ -160,26 +163,26 @@ export const ContactCard = () => {
           placeholder="Комментарий"
           name="comment"
           value={formData.comment}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+          // @ts-ignore
           onChange={handleChange}
           style={{
-            // flex: 1,
-            width: "100%",
-            // height: "50px",
-            marginTop: "16px",
-            padding: "8px",
-            minHeight: "100px",
-            border: "1px solid silver",
-            borderRadius: "5px",
+            width: '100%',
+            marginTop: '16px',
+            padding: '8px',
+            minHeight: '100px',
+            border: '1px solid silver',
+            borderRadius: '5px'
           }}
         />
 
         <DialogActions className="flex justify-between alain-center">
-          <Button color="secondary">Delete</Button>
-          <Button color="primary" onClick={onSave}>
+          {activeContact && <Button color="secondary">Delete</Button>}
+          <Button color="primary" onClick={onSave} className="ml-auto">
             Save
           </Button>
         </DialogActions>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

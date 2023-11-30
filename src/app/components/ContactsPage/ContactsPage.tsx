@@ -1,13 +1,15 @@
-import { AddContactBlock } from "../AddContactBlock/AddContactBlock";
-import { ContactCard } from "../ContactCard/ContactCard";
-import { ContactsTable } from "../ContactsTable/ContactsTable";
-import { SearchMenu } from "../SearchMenu/SearchMenu";
+import { AddContactBlock } from '../AddContactBlock/AddContactBlock'
+import { ContactCard } from '../ContactCard/ContactCard'
+import { ContactsTable } from '../ContactsTable/ContactsTable'
+import { SearchMenu } from '../SearchMenu/SearchMenu'
+import { useAppSelector } from '@/app/redux/hooks'
+import { getActiveContactId } from '@/app/redux/slices/selectors'
 
 export const ContactsPage = () => {
-  const showContactCard = true;
+  const activeContactId = useAppSelector(getActiveContactId)
 
-  if (showContactCard) {
-    return <ContactCard />;
+  if (activeContactId) {
+    return <ContactCard />
   }
 
   return (
@@ -18,5 +20,5 @@ export const ContactsPage = () => {
       </nav>
       <ContactsTable />
     </>
-  );
-};
+  )
+}
