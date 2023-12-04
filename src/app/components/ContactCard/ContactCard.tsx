@@ -20,49 +20,7 @@ import { type IContact } from '@/app/types'
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
 import { getActiveContact, getActiveContactId } from '@/app/redux/slices/selectors'
 import { saveNewContacts, setActiveContactId } from '@/app/redux/slices/mainSlice'
-
-interface IField {
-  label: string
-  name: keyof IContact
-  type?: string
-}
-
-const fields: IField[] = [
-  {
-    label: 'ФИО',
-    name: 'name'
-  },
-  {
-    label: 'Организация',
-    name: 'organization'
-  },
-  {
-    label: 'Должность',
-    name: 'position'
-  },
-  {
-    label: 'Экспертиза',
-    name: 'expertise'
-  },
-  {
-    label: 'Телефон',
-    name: 'phone'
-  },
-  {
-    label: 'Телефон 2',
-    name: 'phoneSecond'
-  },
-  {
-    label: 'Email',
-    name: 'email',
-    type: 'email'
-  },
-  {
-    label: 'Email 2',
-    name: 'emailSecond',
-    type: 'email'
-  }
-]
+import { tableFields } from '@/app/contacts'
 
 const requiredFields = ['name', 'email', 'phone']
 
@@ -128,7 +86,7 @@ export const ContactCard = () => {
           style={{ position: 'absolute', top: 20, right: 50 }}
         ><CloseIcon/></IconButton>
         <Box display='flex' flexWrap='wrap' marginBottom={6} >
-          {fields.map(({ label, name, type = 'text' }) => (
+          {tableFields.map(({ label, name, type = 'text' }) => (
             <TextField
               key={name}
               className={styles.textField}
@@ -146,6 +104,7 @@ export const ContactCard = () => {
         <FormControlLabel
           control={
             <Checkbox
+              checked={formData.shareDisabled}
               onChange={handleCheckboxChange}
               name="hasReadRules"
               color="primary"

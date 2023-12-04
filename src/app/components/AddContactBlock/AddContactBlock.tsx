@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx'
 import './AddContactBlock.css'
 import { saveNewContacts, setActiveContactId } from '@/app/redux/slices/mainSlice'
 import { useAppDispatch } from '@/app/redux/hooks'
-import { fieldsFromFile, defaultContact } from '../ContactsTable/constants'
+import { fieldsFromFile, defaultContact } from '../../constants'
 import { type IContact } from '@/app/types'
 
 export const AddContactBlock = () => {
@@ -58,12 +58,10 @@ export const AddContactBlock = () => {
 
   return (
     <div className="addContactBlock">
-      <Stack spacing={2} direction="row">
-        <Button variant="contained" onClick={() => dispatch(setActiveContactId(uniqid()))}>Добавить Контакт</Button>
+      <Stack spacing={2} paddingBottom={3} direction="column" >
+        <Button size='small' variant="contained" onClick={() => dispatch(setActiveContactId(uniqid()))}>Добавить Контакт</Button>
         <label style={{ display: 'inline-block', position: 'relative' }}>
-          <Button variant="contained" component="span">
-        Импортировать Контакты
-          </Button>
+          <Button variant="contained" component="span">Импортировать Контакты</Button>
           <input
             type="file"
             style={{ display: 'none' }}

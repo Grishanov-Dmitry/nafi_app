@@ -8,13 +8,15 @@ export interface IState {
   userName: string
   contacts: IContact[]
   activeContactId: string | null
+  collectionItems: IContact[] | []
 }
 
 const initialState: IState = {
   isLogged: false,
   userName: 'Тимур Аймалетдинов',
   contacts,
-  activeContactId: null
+  activeContactId: null,
+  collectionItems: []
 }
 
 const commonSlice = createSlice({
@@ -32,10 +34,13 @@ const commonSlice = createSlice({
     },
     saveNewContacts (state, { payload }) {
       state.contacts = [...state.contacts, ...payload]
+    },
+    setCollectionItems (state, { payload }) {
+      state.collectionItems = payload
     }
   }
 })
 
-export const { setUserName, changeLogIn, setActiveContactId, saveNewContacts } = commonSlice.actions
+export const { setUserName, changeLogIn, setActiveContactId, saveNewContacts, setCollectionItems } = commonSlice.actions
 
 export default commonSlice.reducer

@@ -14,3 +14,5 @@ export const getActiveContact = (state: RootState) => {
 
   return contacts.find((contact) => contact.id === activeContactId)
 }
+
+export const getCollectionItems = (state: RootState) => getCommonState(state).collectionItems

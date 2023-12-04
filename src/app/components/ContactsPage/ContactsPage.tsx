@@ -13,12 +13,12 @@ export const ContactsPage = () => {
   }
 
   return (
-    <>
-      <nav>
+    <div className='h-full flex'>
+      <nav className='p-3 w-44'>
         <AddContactBlock />
         <SearchMenu />
       </nav>
       <ContactsTable />
-    </>
+    </div>
   )
 }

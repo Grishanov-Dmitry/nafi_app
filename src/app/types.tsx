@@ -12,3 +12,9 @@ export interface IContact {
   source: string // keyof typeof sources
   comment: string
 }
+
+export interface ITableField {
+  label: string
+  name: keyof IContact
+  type?: string
+}

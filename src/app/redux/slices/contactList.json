@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": "11111",
         "name": "Василий Молодцов",
         "organization": "InterStar",
         "position": "Developer",
@@ -14,7 +14,7 @@
         "shareDisabled": true
     },
     {
-        "id": "2",
+        "id": "22222",
         "name": "Ольга  Хорошова",
         "organization": "Молодец Солюшен",
         "position": "Дизайнер",
@@ -28,7 +28,7 @@
         "shareDisabled": false
     },
     {
-        "id": "3",
+        "id": "33333",
         "name": "Dzmitry Some",
         "organization": "BFS solution",
         "position": "Engineer",
@@ -42,7 +42,7 @@
         "shareDisabled": true
       },
       {
-        "id": "4",
+        "id": "44444",
         "name": "Alex Some",
         "organization": "BFS Global",
         "position": "Engineer",
