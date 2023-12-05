@@ -1,24 +1,14 @@
-"use client";
+'use client'
 
-import { Header } from "./components/Header/Header";
-import { useAppSelector } from "./redux/hooks";
-import { getIsLogged } from "./redux/slices/selectors";
-import { LoginPage } from "./components/LoginPage/LoginPage";
-import { ContactsPage } from "./components/ContactsPage/ContactsPage";
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
-export default function Home() {
-  const isLogged = useAppSelector(getIsLogged);
+export default function Home () {
+  const router = useRouter()
 
-  if (!isLogged) {
-    return <LoginPage />;
-  }
+  useEffect(() => {
+    router.push('/contacts')
+  }, [])
 
-  return (
-    <div className="container">
-      <Header />
-      <main>
-        <ContactsPage />
-      </main>
-    </div>
-  );
+  return null
 }
