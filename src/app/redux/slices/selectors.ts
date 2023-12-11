@@ -16,3 +16,5 @@ export const getActiveContact = (state: RootState) => {
 }
 
 export const getCollectionItems = (state: RootState) => getCommonState(state).collectionItems
+
+export const getActiveTab = (state: RootState) => getCommonState(state).activeTab

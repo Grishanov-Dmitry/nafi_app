@@ -1,5 +1,9 @@
 import { type IContact } from '@/app/types'
 import { type GridColDef } from '@mui/x-data-grid'
+import PersonPinIcon from '@mui/icons-material/PersonPin'
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded'
 
 export const fieldsFromFile = {
   name: 'ФИО',
@@ -84,3 +88,30 @@ export const accountStatuses = {
   active: 'active',
   blocked: 'blocked'
 }
+
+export const headerTabs = [
+  {
+    label: 'контакты',
+    href: 'contacts',
+    icon: PersonPinIcon,
+    id: 0
+  },
+  {
+    label: 'расширенный поиск',
+    href: 'search',
+    icon: ContentPasteSearchIcon,
+    id: 1
+  },
+  {
+    label: 'учетные записи',
+    href: 'accounts',
+    icon: ManageAccountsIcon,
+    id: 2
+  },
+  {
+    label: 'подборка',
+    href: 'collection',
+    icon: BookmarkAddedIcon,
+    id: 3
+  }
+]
