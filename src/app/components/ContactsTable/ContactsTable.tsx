@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { Button } from '@mui/material'
 import { DataGrid, GridActionsCellItem, type GridColDef, type GridRowSelectionModel } from '@mui/x-data-grid'
+
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
 import { getContacts } from '@/app/redux/slices/selectors'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import { tableColumns } from '../../constants'
 import { setActiveContactId, setCollectionItems } from '@/app/redux/slices/mainSlice'
-import { Button } from '@mui/material'
 import { type IContact } from '@/app/types'
 import { useSnackbar } from '@/app/layout'
 

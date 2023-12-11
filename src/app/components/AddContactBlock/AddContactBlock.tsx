@@ -35,7 +35,7 @@ export const AddContactBlock = () => {
             // First are headers list
             return
           }
-          fieldsFromFile.forEach((item, i) => {
+          Object.keys(fieldsFromFile).forEach((item, i) => {
             if (item === 'shareDisabled') {
               newContact[item] = row[i].toLowerCase() === 'да'
             } else {

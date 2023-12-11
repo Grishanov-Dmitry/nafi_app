@@ -18,3 +18,12 @@ export interface ITableField {
   name: keyof IContact
   type?: string
 }
+
+export interface IAccount {
+  id: number
+  fullName: string
+  password: string
+  email: string
+  role: string
+  status: string
+}

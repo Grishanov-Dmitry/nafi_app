@@ -37,10 +37,13 @@ const commonSlice = createSlice({
     },
     setCollectionItems (state, { payload }) {
       state.collectionItems = payload
+    },
+    clearCollectionItems (state) {
+      state.collectionItems = []
     }
   }
 })
 
-export const { setUserName, changeLogIn, setActiveContactId, saveNewContacts, setCollectionItems } = commonSlice.actions
+export const { setUserName, changeLogIn, setActiveContactId, saveNewContacts, setCollectionItems, clearCollectionItems } = commonSlice.actions
 
 export default commonSlice.reducer

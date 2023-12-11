@@ -7,9 +7,10 @@ import {
 } from '@mui/material'
 import { type ChangeEvent, type FormEvent, useState } from 'react'
 
-import './LoginPage.css'
 import { useAppDispatch } from '@/app/redux/hooks'
 import { changeLogIn } from '@/app/redux/slices/mainSlice'
+
+import './LoginPage.css'
 
 const tempUserCreds = {
   login: 'user',

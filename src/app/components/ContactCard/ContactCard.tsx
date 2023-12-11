@@ -137,7 +137,7 @@ export const ContactCard = () => {
         />
 
         <DialogActions className="flex justify-between alain-center">
-          {activeContact && <Button color="secondary">Delete</Button>}
+          {activeContact !== null && <Button color="secondary">Delete</Button>}
           <Button color="primary" onClick={onSave} className="ml-auto">
             Save
           </Button>

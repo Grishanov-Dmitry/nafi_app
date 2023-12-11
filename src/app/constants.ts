@@ -1,7 +1,19 @@
 import { type IContact } from '@/app/types'
 import { type GridColDef } from '@mui/x-data-grid'
 
-export const fieldsFromFile = ['name', 'organization', 'position', 'expertise', 'phone', 'phoneSecond', 'email', 'emailSecond', 'shareDisabled', 'comment']
+export const fieldsFromFile = {
+  name: 'ФИО',
+  organization: 'Организация',
+  position: 'Должность',
+  expertise: 'Экспертиза',
+  phone: 'Телефон',
+  phoneSecond: 'Телефон доп',
+  email: 'Email',
+  emailSecond: 'Email доп',
+  shareDisabled: 'Переданы заказчиком',
+  comment: 'Комментарий',
+  source: 'Ресурс'
+}
 
 export const tableColumns: GridColDef[] = [
   { field: 'name', headerName: 'ФИО', width: 200 },
@@ -61,4 +73,14 @@ export const defaultContact: IContact = {
   shareDisabled: false,
   source: '',
   comment: ''
+}
+
+export const accountRoles = {
+  admin: 'admin',
+  user: 'user'
+}
+
+export const accountStatuses = {
+  active: 'active',
+  blocked: 'blocked'
 }
