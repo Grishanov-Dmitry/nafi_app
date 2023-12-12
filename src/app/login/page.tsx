@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Box,
   Button,
@@ -5,20 +7,31 @@ import {
   TextField,
   Typography
 } from '@mui/material'
-import { type ChangeEvent, type FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { type ChangeEvent, type FormEvent, useState, useEffect } from 'react'
 
-import { useAppDispatch } from '@/app/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
 import { changeLogIn } from '@/app/redux/slices/mainSlice'
 
 import './LoginPage.css'
+import { getIsLogged } from '../redux/slices/selectors'
 
 const tempUserCreds = {
   login: 'user',
   password: 'asdq124asrqw'
 }
 
-export const LoginPage = () => {
+export default function Login () {
   const dispatch = useAppDispatch()
+  const router = useRouter()
+
+  const isLogged = useAppSelector(getIsLogged)
+
+  useEffect(() => {
+    if (isLogged) {
+      router.push('/contacts')
+    }
+  }, [isLogged])
 
   const [creds, setCreds] = useState({
     login: '',

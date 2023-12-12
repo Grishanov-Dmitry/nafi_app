@@ -5,17 +5,17 @@ import Tab from '@mui/material/Tab'
 import LogoutIcon from '@mui/icons-material/Logout'
 import Button from '@mui/material/Button'
 import Image from 'next/image'
+import { useRouter, usePathname } from 'next/navigation'
 
 import logo from '../../assets/logo.svg'
 
 import './header.css'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { getActiveTab, getUserName } from '../../redux/slices/selectors'
+import { getActiveTab, getIsLogged, getUserName } from '../../redux/slices/selectors'
 import { changeLogIn, setActiveTab } from '@/app/redux/slices/mainSlice'
 import Link from 'next/link'
 import { headerTabs } from '@/app/constants'
 import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
@@ -29,6 +29,15 @@ export const Header = () => {
       dispatch(setActiveTab(activeTab.id))
     }
   }, [])
+
+  const isLogged = useAppSelector(getIsLogged)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLogged) {
+      router.push('/login')
+    }
+  }, [isLogged])
 
   // useEffect(() => {
   //   // Send a request to the API route
