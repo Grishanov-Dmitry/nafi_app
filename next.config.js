@@ -2,7 +2,7 @@
 const nextConfig = {
   // basePath: '/src',
   output: "export",
-  assetPrefix: '/nafi_app',
+  assetPrefix: '/out',
 
   // Specify the base path for the exported pages
   // assetPrefix: '/src/',
