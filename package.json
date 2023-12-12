@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "npx next build && npx next export && gh-pages -d out",
-    "postdeploy": "rimraf out"
+    "deploy": "npx next build && gh-pages -d out"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

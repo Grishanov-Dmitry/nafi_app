@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // basePath: '/src',
-  output: 'export',
+  output: "export",
   assetPrefix: '/nafi_app',
 
   // Specify the base path for the exported pages
