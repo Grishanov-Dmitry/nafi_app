@@ -25,6 +25,7 @@ const downloadHelper = (contacts: IContact[]) => {
       }
 
       if (typeof contact[key] === 'boolean') {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         preparedContact[fieldsFromFile[key]] = contact[key] ? 'Да' : 'Нет'
         return
       }

@@ -40,7 +40,8 @@ export default function Login () {
 
   const onChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const value = target.value
-    const ariaLabel = target.getAttribute('aria-label') || ''
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    const ariaLabel = target.getAttribute('aria-label') ?? ''
 
     setCreds({
       ...creds,

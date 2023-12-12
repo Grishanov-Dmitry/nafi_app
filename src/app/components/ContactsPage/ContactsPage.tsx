@@ -8,7 +8,7 @@ import { getActiveContactId } from '@/app/redux/slices/selectors'
 export const ContactsPage = () => {
   const activeContactId = useAppSelector(getActiveContactId)
 
-  if (activeContactId) {
+  if (activeContactId !== null) {
     return <ContactCard />
   }
 
