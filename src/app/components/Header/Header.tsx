@@ -23,12 +23,20 @@ export const Header = () => {
   const pathname = usePathname()
 
   useEffect(() => {
-    const activeTab = headerTabs.find((tab) => pathname.includes(tab.href))
+    const activeTab = headerTabs.find((tab) => pathname?.includes(tab.href))
 
     if (activeTab !== undefined) {
       dispatch(setActiveTab(activeTab.id))
     }
   }, [])
+
+  // useEffect(() => {
+  //   // Send a request to the API route
+  //   fetch('/api/example')
+  //     .then(async (response) => await response.json())
+  //     .then((data) => { setMessage(data.message) })
+  //     .catch((error) => { console.error('Error:', error) })
+  // }, [])
 
   const userName = useAppSelector(getUserName)
   const activeTab = useAppSelector(getActiveTab)

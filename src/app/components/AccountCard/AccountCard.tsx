@@ -102,40 +102,41 @@ export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IA
           style={{ position: 'absolute', top: 20, right: 50 }}
         ><CloseIcon/></IconButton>
         <Box display='flex' flexWrap='wrap' marginBottom={10} >
-          <TextField
-            className='w-80 mx-8 mb-4'
-            label="ФИО"
-            variant="outlined"
-            name='fullName'
-            value={formData.fullName}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <TextField
-            className='w-80 mx-8 mb-4'
-            label="Email"
-            variant="outlined"
-            name='email'
-            value={formData.email}
-            onChange={handleChange}
-            margin="normal"
-          />
-          <PasswordField
-            className='w-80 mx-8 mb-8'
-            label="Пароль"
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <PasswordField
-            className='w-80 mx-8 mb-8'
-            label="Повтор пароля"
-            name='passwordSecond'
-            value={formData.passwordSecond}
-            onChange={handleChange}
-          />
-
           <FormControl>
+
+            <TextField
+              className='w-80 mx-8 mb-4'
+              label="ФИО"
+              variant="outlined"
+              name='fullName'
+              value={formData.fullName}
+              onChange={handleChange}
+              margin="normal"
+            />
+            <TextField
+              className='w-80 mx-8 mb-4'
+              label="Email"
+              variant="outlined"
+              name='email'
+              value={formData.email}
+              onChange={handleChange}
+              margin="normal"
+            />
+            <PasswordField
+              className='w-80 mx-8 mb-8'
+              label="Пароль"
+              name='password'
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <PasswordField
+              className='w-80 mx-8 mb-8'
+              label="Повтор пароля"
+              name='passwordSecond'
+              value={formData.passwordSecond}
+              onChange={handleChange}
+            />
+
             <InputLabel id="demo-simple-select-label">Роль</InputLabel>
             <Select
               className='w-80 mx-8 mb-6'
@@ -149,9 +150,7 @@ export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IA
               <MenuItem value={accountRoles.user}>Пользователь</MenuItem>
               <MenuItem value={accountRoles.admin}>Администратор</MenuItem>
             </Select>
-          </FormControl>
 
-          <FormControl>
             <InputLabel id="demo-simple-select-label-2">Статус</InputLabel>
             <Select
               className='w-80 mx-8 mb-6'

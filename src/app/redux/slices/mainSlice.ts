@@ -10,6 +10,7 @@ export interface IState {
   activeContactId: string | null
   collectionItems: IContact[] | []
   activeTab: number
+  isOpenEmailCreate: boolean
 }
 
 const initialState: IState = {
@@ -18,7 +19,8 @@ const initialState: IState = {
   contacts,
   activeContactId: null,
   collectionItems: [],
-  activeTab: 0
+  activeTab: 0,
+  isOpenEmailCreate: false
 }
 
 const commonSlice = createSlice({
@@ -43,8 +45,14 @@ const commonSlice = createSlice({
     clearCollectionItems (state) {
       state.collectionItems = []
     },
+    deleteFromCollectionById (state, { payload }) {
+      state.collectionItems = state.collectionItems.filter((item) => item.id !== payload)
+    },
     setActiveTab (state, { payload }: { payload: number }) {
       state.activeTab = payload
+    },
+    setIsOpenEmailCreate (state, { payload }: { payload: boolean }) {
+      state.isOpenEmailCreate = payload
     }
   }
 })
@@ -56,7 +64,9 @@ export const {
   saveNewContacts,
   setCollectionItems,
   clearCollectionItems,
-  setActiveTab
+  setActiveTab,
+  deleteFromCollectionById,
+  setIsOpenEmailCreate
 } = commonSlice.actions
 
 export default commonSlice.reducer

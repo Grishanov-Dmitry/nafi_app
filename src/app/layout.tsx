@@ -4,6 +4,8 @@ import { createContext, useContext, useState } from 'react'
 import { Inter } from 'next/font/google'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import { Providers } from './redux/provider'
 import { Header } from './components/Header/Header'
@@ -49,15 +51,17 @@ export default function RootLayout ({
     <Providers>
       <html lang="en">
         <SnackbarContext.Provider value={contextValue}>
-          <body className={inter.className}>
-            <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
-              <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-                {snackbarMessage}
-              </Alert>
-            </Snackbar>
-            <Header />
-            {children}
-          </body>
+          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+            <body className={inter.className}>
+              <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+                  {snackbarMessage}
+                </Alert>
+              </Snackbar>
+              <Header />
+              {children}
+            </body>
+          </LocalizationProvider>
         </SnackbarContext.Provider>
       </html>
     </Providers>

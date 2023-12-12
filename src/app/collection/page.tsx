@@ -3,13 +3,15 @@
 import { DataGrid, GridActionsCellItem, type GridColDef } from '@mui/x-data-grid'
 import { Button, DialogActions } from '@mui/material'
 import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import * as XLSX from 'xlsx'
 
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
-import { getCollectionItems } from '@/app/redux/slices/selectors'
-import { clearCollectionItems, setActiveContactId } from '@/app/redux/slices/mainSlice'
+import { getCollectionItems, getIsOpenEmailCreate } from '@/app/redux/slices/selectors'
+import { clearCollectionItems, deleteFromCollectionById, setActiveContactId, setIsOpenEmailCreate } from '@/app/redux/slices/mainSlice'
 import { fieldsFromFile, tableColumns } from '../constants'
 import { type IContact } from '../types'
+import { EmailPrepare } from '../components/EmailPrepare/EmailPrepare'
 
 const downloadHelper = (contacts: IContact[]) => {
   return contacts.map((contact) => {
@@ -35,6 +37,7 @@ const downloadHelper = (contacts: IContact[]) => {
 export default function CollectionPage () {
   const dispatch = useAppDispatch()
   const contacts = useAppSelector(getCollectionItems)
+  const isOpenEmailCreate = useAppSelector(getIsOpenEmailCreate)
 
   const columns: GridColDef[] = [
     ...tableColumns,
@@ -45,8 +48,20 @@ export default function CollectionPage () {
       getActions: (params) => [
         <GridActionsCellItem
           icon={<ModeEditIcon />}
-          label="Изменить"
-          onClick={() => dispatch(setActiveContactId(params.id))}
+          label="Сформировать сообщение"
+          onClick={() => {
+            dispatch(setIsOpenEmailCreate(true))
+            dispatch(setActiveContactId(params.id))
+          }}
+          showInMenu
+          key={12}
+        />,
+        <GridActionsCellItem
+          icon={<DeleteForeverIcon />}
+          label="Удалить"
+          onClick={() => {
+            dispatch(deleteFromCollectionById(params.id))
+          }}
           showInMenu
           key={12}
         />
@@ -73,6 +88,7 @@ export default function CollectionPage () {
 
   return (
     <div className='flex-1 w-full overflow-auto px-4 flex flex-col'>
+      {isOpenEmailCreate && <EmailPrepare />}
       <DialogActions className="flex justify-end alain-center">
         {<Button color="secondary" onClick={clearCollection}>Очистить подборку</Button>}
         <Button color="primary" className="ml-auto" onClick={handleDownload}>

@@ -24,17 +24,17 @@ export const tableColumns: GridColDef[] = [
   {
     field: 'organization',
     headerName: 'Организация',
-    width: 150
+    width: 130
   },
   {
     field: 'position',
     headerName: 'Должность',
-    width: 150
+    width: 130
   },
   {
     field: 'phone',
     headerName: 'Телефон',
-    width: 150
+    width: 130
   },
   {
     field: 'phoneSecond',

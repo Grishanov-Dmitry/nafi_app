@@ -8,7 +8,7 @@
         "phone": "+11 111 11 111",
         "phoneSecond": "+22 222 22 222",
         "email": "vasily@gmail.com",
-        "emailSecond": "",
+        "emailSecond": "vasilySecond@gmail.com",
         "source": "contacts",        
         "comment": "Хороший специалист",
         "shareDisabled": true
