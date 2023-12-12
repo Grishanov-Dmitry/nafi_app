@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/src',
+  // basePath: '/src',
   output: 'export',
 
   // Specify the base path for the exported pages
-  assetPrefix: '/src/',
+  // assetPrefix: '/src/',
 
   // Specify the output directory for the export
   // output: {
