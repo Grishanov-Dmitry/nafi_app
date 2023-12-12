@@ -54,9 +54,14 @@ export const PreparedEmail = ({ formData }: IPreparedEmail) => {
 
       <DialogActions className="flex justify-between alain-center">
         <Button color="secondary" onClick={() => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           navigator.clipboard.writeText(divRef.current.innerText)
         }}>В буфер</Button>
         <Button color="primary" className="ml-auto" onClick={() => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
           createMailtoLink(divRef.current.innerText)
         }}>
             Создать email

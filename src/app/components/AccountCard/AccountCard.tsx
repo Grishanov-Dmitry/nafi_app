@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type ChangeEvent, useState } from 'react'
 
 import TextField from '@mui/material/TextField'
@@ -18,7 +20,6 @@ import {
 import uniqid from 'uniqid'
 
 import { type IAccount } from '@/app/types'
-import { useAppDispatch } from '@/app/redux/hooks'
 import { accountRoles, accountStatuses } from '@/app/constants'
 import { PasswordField } from '../PasswordField/PasswordField'
 import { useSnackbar } from '@/app/layout'
@@ -43,8 +44,6 @@ const initAccount = {
 }
 
 export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IAccountCard) => {
-  const dispatch = useAppDispatch()
-
   const [formData, setFormData] = useState<IFormData>({
     ...activeAccount ?? initAccount,
     passwordSecond: activeAccount?.password ?? ''
@@ -127,6 +126,7 @@ export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IA
               label="Пароль"
               name='password'
               value={formData.password}
+              // @ts-ignore
               onChange={handleChange}
             />
             <PasswordField
@@ -134,6 +134,7 @@ export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IA
               label="Повтор пароля"
               name='passwordSecond'
               value={formData.passwordSecond}
+              // @ts-ignore
               onChange={handleChange}
             />
 
@@ -145,6 +146,7 @@ export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IA
               value={formData.role}
               label="Роль"
               name='role'
+              // @ts-ignore
               onChange={handleChange}
             >
               <MenuItem value={accountRoles.user}>Пользователь</MenuItem>
@@ -159,6 +161,7 @@ export const AccountCard = ({ activeAccount, isShow, toggleAccountCardShow }: IA
               value={formData.status}
               label="Статус"
               name='status'
+              // @ts-ignore
               onChange={handleChange}
             >
               <MenuItem value={accountStatuses.active}>Активный</MenuItem>

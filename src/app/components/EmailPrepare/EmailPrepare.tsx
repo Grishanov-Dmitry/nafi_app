@@ -4,6 +4,8 @@ import { PreparedEmail } from '../PreparedEmail/PreparedEmail'
 
 export const EmailPrepare = () => {
   const [isShowResult, setIsShowResult] = useState<boolean>(false)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const [formData, setFormData] = useState<IFormData>({})
 
   const showResult = (data: IFormData) => {

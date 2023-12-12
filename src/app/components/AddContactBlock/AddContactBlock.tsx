@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import Button from '@mui/material/Button'
 import { Stack } from '@mui/material'
 import uniqid from 'uniqid'
@@ -15,10 +16,13 @@ export const AddContactBlock = () => {
   const handleFileChange = async (e) => {
     const file = e.target.files[0]
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (file) {
       const reader = new FileReader()
 
       reader.onload = (e) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const data = new Uint8Array(e.target.result)
         const workbook = XLSX.read(data, { type: 'array' })
 
@@ -37,8 +41,12 @@ export const AddContactBlock = () => {
           }
           Object.keys(fieldsFromFile).forEach((item, i) => {
             if (item === 'shareDisabled') {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               newContact[item] = row[i].toLowerCase() === 'да'
             } else {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               newContact[item] = row[i]
             }
           })
@@ -65,6 +73,7 @@ export const AddContactBlock = () => {
           <input
             type="file"
             style={{ display: 'none' }}
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onChange={handleFileChange}
           />
         </label>

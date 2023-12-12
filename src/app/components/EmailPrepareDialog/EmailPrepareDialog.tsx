@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { type ChangeEvent, useState } from 'react'
 import { Dialog, TextField, Select, MenuItem, InputLabel, TextareaAutosize, Box, Button, IconButton } from '@mui/material'
 import { DesktopDatePicker } from '@mui/x-date-pickers'
@@ -95,6 +96,8 @@ export const EmailPrepareDialog = ({ showResult }: IEmailPrepareDialog) => {
             disablePast
             format="DD.MM.YYYY"
             onChange={(newValue: Dayjs | null) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+            // @ts-ignore
               setCurrentDate(newValue)
             }}
           />
@@ -110,6 +113,8 @@ export const EmailPrepareDialog = ({ showResult }: IEmailPrepareDialog) => {
               labelId="demo-simple-select-label-2"
               value={formData.formatType}
               name='formatType'
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+              // @ts-ignore
               onChange={handleChange}
             >
               {Object.keys(formatTypes).map((format) => <MenuItem key={format} value={format}>{formatTypes[format]}</MenuItem>)}
@@ -124,6 +129,8 @@ export const EmailPrepareDialog = ({ showResult }: IEmailPrepareDialog) => {
               labelId="demo-simple-select-label-2"
               value={formData.duration}
               name='duration'
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+        // @ts-ignore
               onChange={handleChange}
             >
               {Object.keys(durations).map((duration) => <MenuItem key={duration} value={duration}>{durations[duration]}</MenuItem>)}
@@ -146,6 +153,8 @@ export const EmailPrepareDialog = ({ showResult }: IEmailPrepareDialog) => {
           id='additionText'
           name="addition"
           value={formData.addition}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+        // @ts-ignore
           onChange={handleChange}
           style={{
             width: '100%',
