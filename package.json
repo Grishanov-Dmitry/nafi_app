@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "npx next build && gh-pages -d out",
+    "deploy": "next build && gh-pages -d out",
     "postdeploy": "rimraf out"
   },
   "dependencies": {
