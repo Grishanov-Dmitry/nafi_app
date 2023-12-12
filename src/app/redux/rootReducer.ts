@@ -10,6 +10,8 @@ export const createNoopStorage = () => ({
   async getItem (_key: string) {
     return await Promise.resolve(null)
   },
+  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   async setItem (_key: string, value: any) {
     return await Promise.resolve(value)
   },

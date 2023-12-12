@@ -15,6 +15,8 @@ import { EmailPrepare } from '../components/EmailPrepare/EmailPrepare'
 
 const downloadHelper = (contacts: IContact[]) => {
   return contacts.map((contact) => {
+    // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const preparedContact: any = {}
 
     Object.keys(contact).forEach((key) => {
